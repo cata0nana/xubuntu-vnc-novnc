@@ -194,7 +194,7 @@ COPY [ "./src/home/config/autostart", "${HOME}/.config/autostart/" ]
 ### writable for all users, adding support for user group override (like 'run --user x:y').
 RUN \
     chmod 664 /etc/passwd /etc/group \
-    && echo "headless:x:1001:0:Default:${HOME}:/bin/bash" >> /etc/passwd \
+    && echo "headless:x:1007090001:0:Default:${HOME}:/bin/bash" >> /etc/passwd \
     && adduser headless sudo \
     && echo "headless:$VNC_PW" | chpasswd \
     && chmod +x \
@@ -212,7 +212,7 @@ RUN "${STARTUPDIR}"/set_user_permissions.sh "${STARTUPDIR}" "${HOME}"
 EXPOSE ${VNC_PORT} ${NO_VNC_PORT}
 
 ### Switch to default application user (non-root)
-USER 1001
+USER 1007090001
 
 ARG ARG_REFRESHED_AT
 ARG ARG_VERSION_STICKER
